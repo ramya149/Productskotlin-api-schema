@@ -1,0 +1,34 @@
+CREATE TABLE products (
+	productId SERIAL PRIMARY KEY,
+	productName VARCHAR ( 100 ) UNIQUE NOT NULL,
+	categoryName VARCHAR ( 100 ) NOT NULL
+	
+);
+
+CREATE TABLE parts (
+	punctuatedPartNumber VARCHAR,
+	partDescr VARCHAR ( 100 ) NOT NULL,
+	productId INTEGER,
+	originalRetailPrice NUMERIC(5,2) NOT NULL,
+	brandName VARCHAR ( 50 ) NOT NULL,
+	brandImage VARCHAR ( 100 ) NOT NULL,
+	PRIMARY KEY(punctuatedPartNumber,productId),
+	CONSTRAINT fk_products
+          FOREIGN KEY(productId) 
+	  REFERENCES products(productId)
+	  ON DELETE CASCADE	
+);
+
+COPY products
+FROM '/private/tmp/products.csv'
+DELIMITER ','
+CSV HEADER;
+
+COPY parts
+FROM '/private/tmp/parts.csv'
+DELIMITER ','
+CSV HEADER;
+
+
+
+
