@@ -1,1 +1,1 @@
-# Productskotlin-api-schema
+# Productskotlin-db-schema
