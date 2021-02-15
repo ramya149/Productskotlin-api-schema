@@ -1,0 +1,1 @@
+# Productskotlin-api-schema
